@@ -56,3 +56,14 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+# Praktikum Laravel 13
+
+Dokumentasi proyek praktikum mata kuliah Pemrograman Web.
+
+## Informasi Mahasiswa
+* **Nama**: Dionisius Endra Hernando
+* **NIM**: C050425004
+
+## Deskripsi Singkat
+Proyek ini dibuat untuk memenuhi tugas praktikum Pemrograman Web menggunakan framework Laravel 13.
