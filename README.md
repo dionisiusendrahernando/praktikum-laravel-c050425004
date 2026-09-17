@@ -64,6 +64,8 @@ Dokumentasi proyek praktikum mata kuliah Pemrograman Web.
 ## Informasi Mahasiswa
 * **Nama**: Dionisius Endra Hernando
 * **NIM**: C050425004
+* **Kelas**: SIKC-3A
+* **Mata Kuliah**: Pemrograman Berbasis Web
 
 ## Deskripsi Singkat
 Proyek ini dibuat untuk memenuhi tugas praktikum Pemrograman Web menggunakan framework Laravel 13.
