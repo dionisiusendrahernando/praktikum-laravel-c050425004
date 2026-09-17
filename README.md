@@ -67,3 +67,11 @@ Dokumentasi proyek praktikum mata kuliah Pemrograman Web.
 
 ## Deskripsi Singkat
 Proyek ini dibuat untuk memenuhi tugas praktikum Pemrograman Web menggunakan framework Laravel 13.
+
+## Cara Menjalankan Proyek
+1. Install dependensi PHP:
+   `composer install`
+2. Jalankan migrasi database dan seeder:
+   `php artisan migrate:fresh --seed`
+3. Jalankan server lokal:
+   `php artisan serve`
