@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Mahasiswa;
+use App\Models\Artikel;
 use Illuminate\Http\Request;
 
-class MahasiswaController extends Controller
+class ArtikelController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $mahasiswa = Mahasiswa::all();
-        return view('mahasiswa.index', compact('mahasiswa'));
+        //
     }
 
     /**
@@ -21,7 +20,7 @@ class MahasiswaController extends Controller
      */
     public function create()
     {
-        return 'create: form tambah mahasiswa';
+        //
     }
 
     /**
@@ -29,38 +28,38 @@ class MahasiswaController extends Controller
      */
     public function store(Request $request)
     {
-        return 'store: simpan data baru';
+        //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Mahasiswa $mahasiswa)
+    public function show(Artikel $artikel)
     {
-        return view('mahasiswa.show', compact('mahasiswa')); 
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit(Artikel $artikel)
     {
-        return "edit: form edit mahasiswa id {$id}";
+        //
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Mahasiswa $mahasiswa)
+    public function update(Request $request, Artikel $artikel)
     {
-        return "update: perbarui data id {$id}";
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(Artikel $artikel)
     {
-        return "destroy: hapus data id {$id}";
+        //
     }
 }
