@@ -25,6 +25,8 @@
                     <td>{{ $mhs->nama }}</td>
                     <td>{{ $mhs->prodi }}</td>
                     <td>{{ $mhs->semester }}</td>
+                    {{-- Penanganan jika data email kosong --}}
+                    <td>{{ $mhs->email ?? 'Email tidak tersedia' }}</td>
                     <td>
                         @switch(true)
                             @case($mhs->semester <= 2)

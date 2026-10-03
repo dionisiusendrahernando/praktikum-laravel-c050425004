@@ -11,7 +11,7 @@ class Matakuliah extends Model
 
     protected $table = 'matakuliahs';
 
-    protected $fillable = ['kode_mk', 'nama_mk', 'sks', 'semester', 'dosen_id'];
+    protected $fillable = ['kode', 'nama_mk', 'sks', 'semester', 'dosen_id'];
 
     public function dosen()
     {
