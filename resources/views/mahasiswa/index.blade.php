@@ -40,7 +40,7 @@
                         @endswitch
                     </td>
                     <td>
-                        <a href="{{ route('mahasiswa.show', $mhs->nim) }}">Detail</a>
+                        <a href="{{ route('mahasiswa.show', ['mahasiswa' => $mhs['nim']]) }}">Detail</a>
                     </td>
                 </tr>
             @empty

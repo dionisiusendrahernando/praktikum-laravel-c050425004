@@ -5,6 +5,21 @@ use App\Models\Mahasiswa;
 use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MatakuliahController;
+use App\Http\Controllers\SapaController;
+use App\Http\Controllers\LatihanController;
+use App\Http\Controllers\StatistikMahasiswaController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\HitungTotalSKSController;
+use App\Http\Controllers\QueryBuilderDemoController;
+
+//Route form-uji.blade.php
+Route::get('/mahasiswa-uji', function () {
+    return view('mahasiswa.form-uji');
+});
+//Route untuk memproses kiriman form (POST)
+Route::post('/mahasiswa-uji', [MahasiswaController::class, 'store']);
+//Route untuk menguji response JSON dari Controller
+Route::get('/api/mahasiswa-uji', [MahasiswaController::class, 'apiIndex']);
 
 // Route Grup Akademik
 Route::prefix('akademik')->group(function () {
@@ -17,7 +32,6 @@ Route::prefix('akademik')->group(function () {
     // Route Matakuliah
     Route::resource('matakuliah', MatakuliahController::class)->only([
         'index', 'show']);
-
 });
 
 //Route profil.blade.php
@@ -48,18 +62,34 @@ Route::get('/halo', function () {
     return 'Halo, ini adalah route pertama saya!';
 });
 
-//Route admin
-Route::prefix('admin')->name('admin.')->group(function () {
-    Route::get('/dashboard', function () {
-        return 'Dashboard Admin';
-    })->name('dashboard');
-});
-
 //Route sapa.blade.php
-Route::get('/sapa', function () {
-    return view('sapa', [
-        'nama' => 'Dionisius Endra Hernando',
-        'kontenHTML' => '<strong>Teks Tebal</strong>',
-        ]);
+Route::get('/sapa-controller', [SapaController::class, 'index']);
+
+//Route LatihanController
+Route::get('/latihan', [LatihanController::class, 'index']);
+
+//Route Pencarian Mahasiswa
+Route::get('/mahasiswa/pencarian', function () {
+    return view('mahasiswa.cari');
 });
 
+//Route memproses aksi pencarian (GET Query String)
+Route::get('/mahasiswa/cari', [MahasiswaController::class, 'cariMahasiswa']);
+
+//Route statistik
+Route::get('/statistik', StatistikMahasiswaController::class);
+
+//Route admin/dashboard
+Route::get('/admin/dashboard', [DashboardController::class, 'index']);
+
+//Route hitung total SKS
+Route::get('/matakuliah/hitung-total-sks', HitungTotalSksController::class);
+
+//Route Query Builder Demo
+Route::get('/demo/semua', [QueryBuilderDemoController::class, 'tampilkanSemua']);
+Route::get('/demo/filter', [QueryBuilderDemoController::class, 'tampilkanFilter']);
+Route::get('/demo/statistik', [QueryBuilderDemoController::class, 'statistikProdi']);
+Route::get('/demo/crud', [QueryBuilderDemoController::class, 'crudAksi']);
+Route::get('/demo/filter-prodi-semester', [QueryBuilderDemoController::class, 'filterprodisemester']);
+Route::get('/demo/jumlah-mahasiswa-per-prodi', [QueryBuilderDemoController::class, 'jmlmhsperprodi']);
+Route::get('/demo/paginate', [QueryBuilderDemoController::class, 'paginateMahasiswa']);

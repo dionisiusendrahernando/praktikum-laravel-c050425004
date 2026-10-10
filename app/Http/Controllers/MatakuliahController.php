@@ -2,35 +2,74 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Matakuliah;
 use Illuminate\Http\Request;
 
 class MatakuliahController extends Controller
 {
-    private $matakuliah = [
-        ['kode' => 'MK001', 'nama' => 'Pemrograman Web', 'sks' => 3, 'semester' => 3],
-        ['kode' => 'MK002', 'nama' => 'Basis Data', 'sks' => 3, 'semester' => 2],
-        ['kode' => 'MK003', 'nama' => 'Algoritma & Struktur Data', 'sks' => 4, 'semester' => 1],
-        ['kode' => 'MK004', 'nama' => 'Jaringan Komputer', 'sks' => 3, 'semester' => 4],
-        ['kode' => 'MK005', 'nama' => 'Rekayasa Perangkat Lunak', 'sks' => 3, 'semester' => 5],
-    ];
-
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
-        return view('matakuliah.index', [
-            'matakuliah' => $this->matakuliah
-        ]);
+        $matakuliahs = Matakuliah::all();
+        return view('matakuliah.index', compact('matakuliahs'));
     }
 
-    public function show($kode)
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
     {
-        $mk = collect($this->matakuliah)->firstWhere('kode', $kode);
+        return view('matakuliah.create');
+    }
 
-        if (!$mk) {
-            abort(404);
-        }
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        Matakuliah::create($request->only(['kode_mk', 'nama_mk', 'sks']));
+        return redirect()->route('matakuliah.index')->with('pesan', 'Mata Kuliah berhasil ditambahkan!');
+    }
 
-        return view('matakuliah.show', [
-            'matakuliah' => (object) $mk
-        ]);
+    /**
+     * Display the specified resource.
+     */
+    public function show(Matakuliah $matakuliah)
+    {
+        $matakuliah->load('nilai.mahasiswa'); // Memuat relasi nilai dan mahasiswa
+        return view('matakuliah.show', compact('matakuliah'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Matakuliah $matakuliah)
+    {
+        return view('matakuliah.edit', compact('matakuliah'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Matakuliah $matakuliah)
+    {
+        $matakuliah->update($request->only(['kode_mk', 'nama_mk', 'sks']));
+        return redirect()->route('matakuliah.index')->with('pesan', 'Mata kuliah berhasil diperbarui');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Matakuliah $matakuliah)
+    {
+        $matakuliah->delete();
+        return redirect()->route('matakuliah.index')->with('pesan', 'Mata kuliah berhasil dihapus');
+    }
+
+    public function nilai()
+    {
+        return $this->hasMany(NilaiMatakuliah::class);
     }
 }

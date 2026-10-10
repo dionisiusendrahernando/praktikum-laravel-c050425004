@@ -1,17 +1,28 @@
 @extends('layouts.app')
 
-@section('judul', 'Detail - ' . ($matakuliah->nama ?? 'Mata Kuliah'))
-
 @section('konten')
-    <h1>Detail Mata Kuliah</h1>
+    <h3>Daftar Mahasiswa: {{ $matakuliah->nama_mk }}</h3>
 
-    <ul>
-        <li><strong>Kode MK:</strong> {{ $matakuliah->kode ?? '-' }}</li>
-        <li><strong>Nama Mata Kuliah:</strong> {{ $matakuliah->nama ?? '-' }}</li>
-        <li><strong>Jumlah SKS:</strong> {{ $matakuliah->sks ?? '-' }} SKS</li>
-        <li><strong>Semester:</strong> {{ $matakuliah->semester ?? '-' }}</li>
-    </ul>
-
-    <br>
-    <a href="{{ route('matakuliah.index') }}">&laquo; Kembali ke Daftar Mata Kuliah</a>
+    <table border="1" cellpadding="8" cellspacing="0">
+        <thead>
+            <tr>
+                <th>NIM</th>
+                <th>Nama Mahasiswa</th>
+                <th>Nilai</th>
+            </tr>
+        </thead>
+        <tbody>
+            @forelse ($matakuliah->nilai as $n)
+                <tr>
+                    <td>{{ $n->mahasiswa->nim ?? '-' }}</td>
+                    <td>{{ $n->mahasiswa->nama ?? '-' }}</td>
+                    <td>{{ $n->nilai }}</td>
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="3">Belum ada mahasiswa yang mengambil mata kuliah ini.</td>
+                </tr>
+            @forelse
+        </tbody>
+    </table>
 @endsection
